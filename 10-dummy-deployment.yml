@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dummy-server
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app_component: dummy-server
+    spec:
+      containers:
+      - image: verosk/dummy_server
+        name: dummy
+        ports:
+        - containerPort: 80
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 5
